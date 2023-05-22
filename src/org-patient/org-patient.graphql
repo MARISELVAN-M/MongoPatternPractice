@@ -1,0 +1,59 @@
+type PatientOrg {
+patientOrgId:String!
+    patientId: String!
+    active: Boolean!
+     patientDetail: [Patient!]
+}
+
+input CreateOrgPatientInput {
+    patientId: String!
+    active: Boolean!
+     patientDetail: [PatientInput!]
+}
+
+input UpdateOrgPatientInput {
+  patientOrgId:String!
+   patientId: String!
+    active: Boolean!
+}
+
+
+type Patient {
+  patientId: String!
+  firstName:String!
+  lastName:String!
+  dateOfBirth:String!
+  addresses:[String]!
+  phones:[String]
+   user_id:String!
+}
+
+input PatientInput {
+  firstName:String!
+  lastName:String!
+  dateOfBirth:String!
+  addresses:[String]!
+  phones: [String]!
+    user_id:String!
+}
+
+
+
+
+
+type Query {
+  orgPatient: [PatientOrg]!
+   findOrgPatient(patientOrgId: String!):PatientOrg!
+     Patients: [Patient!]
+     polyPattern(dateOfBirth:String!): [Patient!]
+     bucketPattern:Patient!
+}
+
+type Mutation {
+  createOrgPatient(createOrgPatientInput: CreateOrgPatientInput!): PatientOrg!
+  updateOrgPatient(updateOrgPatientInput: UpdateOrgPatientInput!): PatientOrg!
+  removeOrgPatient(patientOrgId: String!): Boolean!
+   createPatient(input: PatientInput!): Patient!
+}
+
+

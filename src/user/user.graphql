@@ -1,0 +1,43 @@
+
+type User {
+  _id: String!
+  username: String!
+  age: String!
+  village: String!
+   patientDetail: [Patient!]
+}
+
+type Patient {
+  patientId: String!
+  firstName:String!
+  lastName:String!
+  dateOfBirth:String!
+  addresses:[String]!
+  phones:[String]
+   user_id:String!
+}
+
+input PatientInput {
+  firstName:String!
+  lastName:String!
+  dateOfBirth:String!
+  addresses:[String]!
+  phones: [String]!
+    user_id:String!
+}
+
+input UserInput {
+  username: String!
+   age: String!
+  village: String!
+    patientDetail: [PatientInput!]
+}
+
+type Query {
+  users: [User!]
+  FindTheUser(_id:String!): User
+}
+
+type Mutation {
+  createUser(input: UserInput!): User
+}
